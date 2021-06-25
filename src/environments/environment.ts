@@ -2,8 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const rootPath = 'https://www.flickr.com/services/rest/'
 export const environment = {
-  production: false
+  production: false,
+  apiKey: 'b7f8807915c4584cfa2fef940ecc7533',
+  getImgUrl: `${rootPath}`
 };
 
 /*
