@@ -11,12 +11,19 @@ import {FlickrImg} from "../../models/flickrImg";
 export class SearchImageComponent implements OnInit {
 
   image$: Observable<FlickrImg[]>;
+  keyword: string;
   constructor(private flickrService: FlickrService) { }
 
   ngOnInit(): void {
-    this.image$ = this.flickrService.searchPublicPhotos('bird')
   }
 
+  search($event: any) {
+    this.keyword = $event.target.value.toLowerCase();
+    if (this.keyword && this.keyword.length > 0) {
+      console.log(this.keyword);
+      this.image$ = this.flickrService.searchPublicPhotos(this.keyword);
+    }
+  }
 }
 
 /*

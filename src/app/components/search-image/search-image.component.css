@@ -60,6 +60,8 @@ main_content
 }
 
 .main_input {
+  font-family: 'Kirang Haerang', cursive;
+  font-size: 25px;
   width: 100%;
   min-height: 40px;
   border: 3px solid black;

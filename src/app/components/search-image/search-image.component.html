@@ -21,7 +21,7 @@
     </div>
     <div class="main_search-panel">
       <div class="main_input-wrapper">
-        <input class="main_input" placeholder="Find image">
+        <input class="main_input" placeholder="Find image" (keyup)="search($event)">
       </div>
       <div class="main_paginator-wrapper">
         <a class="main_paginator-next">Forward ></a>
@@ -29,34 +29,9 @@
         <a class="main_paginator-prev">< Back</a>
       </div>
       <div class="main_card-content-wrapper">
-        <div class="main_card-wrapper">
-          <div class="main_card">
-            <img src="https://forum.dedowsk.com/uploads/77.gif">
-            <a class="main_card-href">Bookmark it!</a>
-            <a class="main_card-href">Some tag?</a>
-          </div>
-          <div class="main_card">
-            <img src="https://forum.dedowsk.com/uploads/77.gif">
-            <a class="main_card-href">Bookmark it!</a>
-            <a class="main_card-href">Some tag?</a>
-          </div>
-          <div class="main_card">
-            <img src="https://forum.dedowsk.com/uploads/77.gif">
-            <a class="main_card-href">Bookmark it!</a>
-            <a class="main_card-href">Some tag?</a>
-          </div>
-          <div class="main_card">
-            <img src="https://forum.dedowsk.com/uploads/77.gif">
-            <a class="main_card-href">Bookmark it!</a>
-            <a class="main_card-href">Some tag?</a>
-          </div>
-          <div class="main_card">
-            <img src="https://forum.dedowsk.com/uploads/77.gif">
-            <a class="main_card-href">Bookmark it!</a>
-            <a class="main_card-href">Some tag?</a>
-          </div>
-          <div class="main_card">
-            <img src="https://forum.dedowsk.com/uploads/77.gif">
+        <div *ngIf="image$ | async as response" class="main_card-wrapper">
+          <div *ngFor="let currentImg of response" class="main_card">
+            <img src="{{currentImg.url_m}}">
             <a class="main_card-href">Bookmark it!</a>
             <a class="main_card-href">Some tag?</a>
           </div>
@@ -67,5 +42,5 @@
 </main>
 
 <footer>
-
+  <pre> {{(image$ | async) | json}} </pre>
 </footer>
