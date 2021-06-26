@@ -5,8 +5,8 @@ import {FlickrImg} from "../../models/flickrImg";
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { map } from 'rxjs/internal/operators/map';
-import { filter } from 'rxjs/internal/operators/filter';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
+import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 
 @Component({
   selector: 'app-search-image',
@@ -19,10 +19,7 @@ export class SearchImageComponent implements OnInit {
   image$: Observable<FlickrImg[]>;
   keyword: string;
   pageNumber: number;
-  isSearching: boolean;
-  constructor(private flickrService: FlickrService) {
-    this.isSearching = false;
-  }
+  constructor(private flickrService: FlickrService) {}
 
   ngOnInit(): void {
     this.pageNumber = 1;
@@ -30,21 +27,31 @@ export class SearchImageComponent implements OnInit {
       map((event: any) => {
         return event.target.value;
       }),
-      filter(res => res.length > 0),
       debounceTime(1000),
       distinctUntilChanged()
     ).subscribe((keyword: string) => {
-      this.keyword = keyword;
-      this.image$ = this.flickrService.searchPublicPhotos(this.keyword, this.pageNumber);
+      console.log(keyword);
+      if(keyword != ''){
+        this.keyword = keyword;
+        this.image$ = this.flickrService.searchPublicPhotos(this.keyword, this.pageNumber).pipe(
+          shareReplay(1)
+        );
+      } else {
+        this.image$ = null;
+      }
     });
   }
 
   btnPrevPage() {
-    this.image$ = this.flickrService.searchPublicPhotos(this.keyword, this.pageNumber--);
+    this.image$ = this.flickrService.searchPublicPhotos(this.keyword, --this.pageNumber).pipe(
+      shareReplay(1)
+    );
   }
 
   btnNextPage() {
-    this.image$ = this.flickrService.searchPublicPhotos(this.keyword, this.pageNumber++);
+    this.image$ = this.flickrService.searchPublicPhotos(this.keyword, ++this.pageNumber).pipe(
+      shareReplay(1)
+    );
   }
 }
 

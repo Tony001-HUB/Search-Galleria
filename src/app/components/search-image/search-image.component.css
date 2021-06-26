@@ -173,7 +173,6 @@ main_content
   border-radius: 3px;
   font-family: "Book Antiqua";
   font-size: 20px;
-  padding: 20px 40px;
 }
 
 a {
@@ -184,4 +183,10 @@ a {
 a:hover {
   color: #fff;
   background: #008;
+}
+
+.main_card-img {
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
 }

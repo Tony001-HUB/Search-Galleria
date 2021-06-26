@@ -24,16 +24,16 @@
         <input class="main_input" #imgSearchInput placeholder="Find image">
       </div>
       <div class="main_paginator-wrapper">
-        <a class="main_paginator-next" (click)="btnNextPage()">Forward ></a>
-        <a class="main_paginator-total">Page 1 of 10</a>
-        <a class="main_paginator-prev" (click)="btnPrevPage()">< Back</a>
+        <a *ngIf="image$" class="main_paginator-next" (click)="btnNextPage()">Forward ></a>
+        <a *ngIf="image$" class="main_paginator-total">Page {{pageNumber}} of 10</a>
+        <a *ngIf="image$" class="main_paginator-prev" (click)="btnPrevPage()">< Back</a>
       </div>
       <div class="main_card-content-wrapper">
         <div *ngIf="image$ | async as response" class="main_card-wrapper">
           <div *ngFor="let currentImg of response" class="main_card">
-            <img src="{{currentImg.url_m}}">
-            <a class="main_card-href">Bookmark it!</a>
-            <a class="main_card-href">Some tag?</a>
+            <img class="main_card-img" src="{{currentImg.url_m}}">
+            <a class="main_card-href">Bookmark it! </a>
+            <a class="main_card-href">Some tag? </a>
           </div>
         </div>
       </div>
