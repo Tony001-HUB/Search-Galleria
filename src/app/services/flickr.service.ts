@@ -13,7 +13,7 @@ export class FlickrService {
 
   constructor(private http: HttpClient) { }
 
-  public searchPublicPhotos(searchTerm: string): Observable<FlickrImg[]> {
+  public searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<FlickrImg[]> {
     return this.http
       .get<Response>(`${environment.getImgUrl}`, {
         params: {
@@ -24,6 +24,7 @@ export class FlickrService {
           tag_mode: 'all',
           media: 'photos',
           per_page: '15',
+          page: pageNumber,
           extras: 'tags,date_taken,owner_name,url_q,url_m',
           api_key: `${environment.apiKey}`,
         },

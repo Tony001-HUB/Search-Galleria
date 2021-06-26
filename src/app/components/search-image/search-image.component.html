@@ -21,12 +21,12 @@
     </div>
     <div class="main_search-panel">
       <div class="main_input-wrapper">
-        <input class="main_input" placeholder="Find image" (keyup)="search($event)">
+        <input class="main_input" #imgSearchInput placeholder="Find image">
       </div>
       <div class="main_paginator-wrapper">
-        <a class="main_paginator-next">Forward ></a>
+        <a class="main_paginator-next" (click)="btnNextPage()">Forward ></a>
         <a class="main_paginator-total">Page 1 of 10</a>
-        <a class="main_paginator-prev">< Back</a>
+        <a class="main_paginator-prev" (click)="btnPrevPage()">< Back</a>
       </div>
       <div class="main_card-content-wrapper">
         <div *ngIf="image$ | async as response" class="main_card-wrapper">

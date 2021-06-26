@@ -75,14 +75,17 @@ main_content
   overflow: scroll;
   overflow-x:hidden;
   padding: 0px 30px;
+  max-height: 600px;
 }
 
 .main_navbar-cloud {
   margin: 15px auto;
+  cursor: pointer;
 }
 
 .main_navbar-book {
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .main_paginator-wrapper {
@@ -103,6 +106,7 @@ main_content
   box-sizing: border-box;
   box-shadow: 0 12px 10px rgba(0,0,0,0.5);
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .main_paginator-total {
@@ -115,6 +119,7 @@ main_content
   box-sizing: border-box;
   box-shadow: 0 12px 10px rgba(0,0,0,0.5);
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .main_paginator-prev {
@@ -127,6 +132,7 @@ main_content
   box-sizing: border-box;
   box-shadow: 0 12px 10px rgba(0,0,0,0.5);
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .main_card {
@@ -152,10 +158,12 @@ main_content
   box-sizing: border-box;
   border-radius: 2px;
   padding: 10px 10px;
+  cursor: pointer;
 }
 
 .main_card-href-wrapper {
   padding: 10px 20px;
+  cursor: pointer;
 }
 
 .footer {
@@ -166,4 +174,14 @@ main_content
   font-family: "Book Antiqua";
   font-size: 20px;
   padding: 20px 40px;
+}
+
+a {
+  color: #008;
+  transition: 1s linear;
+}
+
+a:hover {
+  color: #fff;
+  background: #008;
 }
