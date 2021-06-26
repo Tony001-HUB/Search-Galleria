@@ -173,6 +173,7 @@ main_content
   border-radius: 3px;
   font-family: "Book Antiqua";
   font-size: 20px;
+  padding: 1px 0px;
 }
 
 a {
@@ -189,4 +190,9 @@ a:hover {
   height: 400px;
   width: 100%;
   object-fit: cover;
+}
+
+.content {
+  height: calc(100vh - 64px);
+  overflow: auto;
 }
