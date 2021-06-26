@@ -5,11 +5,12 @@ import {FlickrImg} from "../models/flickrImg";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {Response} from "../models/response";
+import {IImageService} from "./i-image-service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class FlickrService {
+export class FlickrService implements IImageService{
 
   constructor(private http: HttpClient) { }
 

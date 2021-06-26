@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {FlickrService} from "../../services/flickr.service";
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {Observable} from "rxjs";
 import {FlickrImg} from "../../models/flickrImg";
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
@@ -7,6 +6,8 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { map } from 'rxjs/internal/operators/map';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 import { shareReplay } from 'rxjs/internal/operators/shareReplay';
+import {IImageService} from "../../services/i-image-service";
+import {IMAGE_SERVICE_TOKEN} from "../../tokens/injection-tokens";
 
 @Component({
   selector: 'app-search-image',
@@ -19,7 +20,7 @@ export class SearchImageComponent implements OnInit {
   image$: Observable<FlickrImg[]>;
   keyword: string;
   pageNumber: number;
-  constructor(private flickrService: FlickrService) {}
+  constructor(@Inject(IMAGE_SERVICE_TOKEN) private iImageService: IImageService) {}
 
   ngOnInit(): void {
     this.pageNumber = 1;
@@ -33,7 +34,7 @@ export class SearchImageComponent implements OnInit {
       console.log(keyword);
       if(keyword != ''){
         this.keyword = keyword;
-        this.image$ = this.flickrService.searchPublicPhotos(this.keyword, this.pageNumber).pipe(
+        this.image$ = this.iImageService.searchPublicPhotos(this.keyword, this.pageNumber).pipe(
           shareReplay(1)
         );
       } else {
@@ -43,13 +44,13 @@ export class SearchImageComponent implements OnInit {
   }
 
   btnPrevPage() {
-    this.image$ = this.flickrService.searchPublicPhotos(this.keyword, --this.pageNumber).pipe(
+    this.image$ = this.iImageService.searchPublicPhotos(this.keyword, --this.pageNumber).pipe(
       shareReplay(1)
     );
   }
 
   btnNextPage() {
-    this.image$ = this.flickrService.searchPublicPhotos(this.keyword, ++this.pageNumber).pipe(
+    this.image$ = this.iImageService.searchPublicPhotos(this.keyword, ++this.pageNumber).pipe(
       shareReplay(1)
     );
   }

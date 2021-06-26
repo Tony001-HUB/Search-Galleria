@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { SearchImageComponent } from './components/search-image/search-image.component';
 import { HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
-import {MatListModule} from '@angular/material/list'
+import {IMAGE_SERVICE_TOKEN} from "./tokens/injection-tokens";
+import {FlickrService} from "./services/flickr.service";
 
 @NgModule({
   declarations: [
@@ -20,18 +21,11 @@ import {MatListModule} from '@angular/material/list'
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    ScrollingModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatListModule,
     RouterModule.forRoot([
       { path: 'cloud', component: SearchImageComponent }
     ]),
   ],
-  providers: [],
+  providers: [{provide: IMAGE_SERVICE_TOKEN, useClass: FlickrService}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
