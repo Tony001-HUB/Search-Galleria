@@ -15,6 +15,7 @@ export class FlickrService implements IImageService{
   constructor(private http: HttpClient) { }
 
   public searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<FlickrImg[]> {
+    all: Response;
     return this.http
       .get<Response>(`${environment.getImgUrl}`, {
         params: {
@@ -27,9 +28,12 @@ export class FlickrService implements IImageService{
           per_page: '15',
           page: pageNumber,
           extras: 'tags,date_taken,owner_name,url_q,url_m',
-          api_key: `${environment.apiKey}`,
+          api_key: `${environment.apiKey}`
         },
       })
       .pipe(map((response) => response.photos.photo));
   }
+
+
 }
+

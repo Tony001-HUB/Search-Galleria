@@ -6,7 +6,8 @@ const rootPath = 'https://www.flickr.com/services/rest/'
 export const environment = {
   production: false,
   apiKey: 'b7f8807915c4584cfa2fef940ecc7533',
-  getImgUrl: `${rootPath}`
+  getImgUrl: `${rootPath}`,
+  imgSharkAPIKey: `KPOA0Z4D6f3c6589ea7b576ed49fa935bb5486a7`
 };
 
 /*

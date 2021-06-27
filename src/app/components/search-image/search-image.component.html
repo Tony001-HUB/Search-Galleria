@@ -32,7 +32,7 @@
         <div *ngIf="image$ | async as response" class="main_card-wrapper">
           <div *ngFor="let currentImg of response" class="main_card">
             <img class="main_card-img" src="{{currentImg.url_m}}">
-            <a class="main_card-href">Bookmark it! </a>
+            <a class="main_card-href">Bookmark it! {{currentImg.id}}</a>
             <a class="main_card-href">Some tag? </a>
           </div>
         </div>
