@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppComponent } from './app.component';
 import { SearchImageComponent } from './components/search-image/search-image.component';
 import {HttpClientJsonpModule, HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
-import {IMAGE_SERVICE_TOKEN} from "./tokens/injection-tokens";
+import {IMAGE_GALLERY_SERVICE_TOKEN, IMAGE_SERVICE_TOKEN} from "./tokens/injection-tokens";
 import {FlickrService} from "./services/flickr.service";
 import { BookmarkImageComponent } from './components/bookmark-image/bookmark-image.component';
+import {ImageGalleryService} from "./services/image-gallery.service";
 
 @NgModule({
   declarations: [
@@ -26,9 +26,8 @@ import { BookmarkImageComponent } from './components/bookmark-image/bookmark-ima
       { path: 'bookmark', component: BookmarkImageComponent}
     ]),
   ],
-  providers: [{provide: IMAGE_SERVICE_TOKEN, useClass: FlickrService}],
+  providers: [[{provide: IMAGE_SERVICE_TOKEN, useClass: FlickrService}],
+    [{provide: IMAGE_GALLERY_SERVICE_TOKEN, useClass: ImageGalleryService}]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-platformBrowserDynamic().bootstrapModule(AppModule).then(r => r);

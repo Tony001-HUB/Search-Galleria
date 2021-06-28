@@ -8,8 +8,8 @@ import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChang
 import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import {IImageService} from "../../services/i-image-service";
 import {IMAGE_SERVICE_TOKEN} from "../../tokens/injection-tokens";
-import {Response} from "../../models/response";
-import {ImageSaverService} from "../../services/image-saver.service";
+import {ImageResponse} from "../../models/imageResponse";
+import {ImageGalleryService} from "../../services/image-gallery.service";
 
 @Component({
   selector: 'app-search-image',
@@ -25,7 +25,7 @@ export class SearchImageComponent implements OnInit {
   photoArray: any[];
   constructor(
     @Inject(IMAGE_SERVICE_TOKEN) private iImageService: IImageService,
-    private imageSaverService: ImageSaverService) {}
+    private imageSaverService: ImageGalleryService) {}
 
   ngOnInit(): void {
     this.pageNumber = 1;
@@ -65,7 +65,7 @@ export class SearchImageComponent implements OnInit {
   }
 
   saveImage(currentImg: Image) {
-    this.imageSaverService.addImageInGallery(currentImg).subscribe();
+    this.imageSaverService.addImageInGallery$(currentImg).subscribe();
   }
 }
 

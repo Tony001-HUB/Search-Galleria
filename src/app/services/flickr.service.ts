@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Image} from "../models/image";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
-import {Response} from "../models/response";
+import {ImageResponse} from "../models/imageResponse";
 import {IImageService} from "./i-image-service";
 
 @Injectable({
@@ -14,9 +14,9 @@ export class FlickrService implements IImageService{
 
   constructor(private http: HttpClient) { }
 
-  public searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<Response> {
+  public searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<ImageResponse> {
     return this.http
-      .get<Response>(`${environment.getImgUrl}`, {
+      .get<ImageResponse>(`${environment.getImgUrl}`, {
         params: {
           tags: searchTerm,
           method: 'flickr.photos.search',
@@ -31,7 +31,6 @@ export class FlickrService implements IImageService{
         },
       })
   }
-
 
 }
 

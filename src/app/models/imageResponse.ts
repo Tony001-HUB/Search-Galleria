@@ -1,6 +1,6 @@
 import {Image} from "./image";
 
-export interface Response {
+export interface ImageResponse {
   photos: {
     page: string,
     pages: string,

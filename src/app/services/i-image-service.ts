@@ -1,6 +1,6 @@
 import {Observable} from "rxjs";
-import {Response} from "../models/response";
+import {ImageResponse} from "../models/imageResponse";
 
 export interface IImageService {
-  searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<Response>;
+  searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<ImageResponse>;
 }

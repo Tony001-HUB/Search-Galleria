@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {ImageSaverService} from "../../services/image-saver.service";
+import {Component, Inject, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {Image} from "../../models/image";
+import {IImageGalleryService} from "../../services/i-image-gallery-service";
+import {IMAGE_GALLERY_SERVICE_TOKEN} from "../../tokens/injection-tokens";
 
 @Component({
   selector: 'app-bookmark-image',
@@ -11,13 +12,15 @@ import {Image} from "../../models/image";
 export class BookmarkImageComponent implements OnInit {
 
   image$: Observable<Image[]>
-  constructor(private imageSaverService: ImageSaverService) { }
+  constructor(
+    @Inject(IMAGE_GALLERY_SERVICE_TOKEN) private iImageGalleryService: IImageGalleryService,
+  ) { }
 
   ngOnInit(): void {
-    this.image$ = this.imageSaverService.getImageFromGallery();
+    this.image$ = this.iImageGalleryService.getImagesFromGallery$();
   }
 
   remove(id: string) {
-    this.imageSaverService.removeImageFromGallery(id).subscribe();
+    this.iImageGalleryService.removeImageFromGallery$(id).subscribe();
   }
 }
