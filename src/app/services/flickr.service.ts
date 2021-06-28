@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {FlickrImg} from "../models/flickrImg";
+import {Image} from "../models/image";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {Response} from "../models/response";
@@ -14,8 +14,7 @@ export class FlickrService implements IImageService{
 
   constructor(private http: HttpClient) { }
 
-  public searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<FlickrImg[]> {
-    all: Response;
+  public searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<Response> {
     return this.http
       .get<Response>(`${environment.getImgUrl}`, {
         params: {
@@ -31,7 +30,6 @@ export class FlickrService implements IImageService{
           api_key: `${environment.apiKey}`
         },
       })
-      .pipe(map((response) => response.photos.photo));
   }
 
 

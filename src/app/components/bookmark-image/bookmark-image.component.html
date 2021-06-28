@@ -1,0 +1,41 @@
+<header class="header">
+  <div class="header-container-wrapper">
+    <div class="header-text-wrapper">
+      <p class="header-text">Image Finder</p>
+    </div>
+    <div class="header-img-wrapper">
+      <img class="header-img" src="./assets/icons8-male-user-96.png">
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <section class="main_content">
+    <div class="main_navbar">
+      <div class="main_navbar-cloud">
+        <a [routerLink]="['/cloud']"><img src="./assets/icons8-cloud-50.png"></a>
+      </div>
+      <div class="main_navbar-book">
+        <a><img src="./assets/icons8-book-stack-60.png"></a>
+      </div>
+    </div>
+    <div class="main_search-panel">
+      <div *ngIf="image$ | async as response">
+        <div class="main_card-content-wrapper">
+          <div class="main_card-wrapper">
+            <div *ngFor="let currentImage of response" class="main_card">
+              <img class="main_card-img" src="{{currentImage.url_m}}">
+              <a class="main_card-href" (click)="remove(currentImage.id)">Remove it! </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <h2>Copyrights</h2>
+</footer>
+
+<pre> {{(image$ | async) | json}} </pre>

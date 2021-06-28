@@ -1,4 +1,4 @@
-export interface FlickrImg {
+export interface Image {
   page: string,
   pages: string,
   id: string,

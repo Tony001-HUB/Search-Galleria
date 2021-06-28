@@ -1,6 +1,6 @@
 import {Observable} from "rxjs";
-import {FlickrImg} from "../models/flickrImg";
+import {Response} from "../models/response";
 
 export interface IImageService {
-  searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<FlickrImg[]>;
+  searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<Response>;
 }

@@ -1,11 +1,11 @@
-import {FlickrImg} from "./flickrImg";
+import {Image} from "./image";
 
 export interface Response {
   photos: {
     page: string,
     pages: string,
-    perpage: string,
-    total: string,
-    photo: FlickrImg[];
+    perpage: number,
+    total: number,
+    photo: Image[];
   };
 }

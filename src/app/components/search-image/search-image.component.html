@@ -16,26 +16,30 @@
         <a><img src="./assets/icons8-cloud-50.png"></a>
       </div>
       <div class="main_navbar-book">
-        <a><img src="./assets/icons8-book-stack-60.png"></a>
+        <a [routerLink]="['/bookmark']"><img src="./assets/icons8-book-stack-60.png"></a>
       </div>
     </div>
     <div class="main_search-panel">
       <div class="main_input-wrapper">
         <input class="main_input" #imgSearchInput placeholder="Find image">
       </div>
+      <div *ngIf="image$ | async as response" >
       <div class="main_paginator-wrapper">
-        <a *ngIf="image$" class="main_paginator-next" (click)="btnNextPage()">Forward ></a>
-        <a *ngIf="image$" class="main_paginator-total">Page {{pageNumber}} of 10</a>
-        <a *ngIf="image$" class="main_paginator-prev" (click)="btnPrevPage()">< Back</a>
+        <a class="main_paginator-next" (click)="btnNextPage()">Forward ></a>
+        <a class="main_paginator-total">
+          Page {{pageNumber}} of {{getNumberOfPagination(response.photos.total, response.photos.perpage)}}
+        </a>
+        <a class="main_paginator-prev" (click)="btnPrevPage()">< Back</a>
       </div>
       <div class="main_card-content-wrapper">
-        <div *ngIf="image$ | async as response" class="main_card-wrapper">
-          <div *ngFor="let currentImg of response" class="main_card">
+        <div class="main_card-wrapper">
+          <div *ngFor="let currentImg of response.photos.photo" class="main_card">
             <img class="main_card-img" src="{{currentImg.url_m}}">
-            <a class="main_card-href">Bookmark it! {{currentImg.id}}</a>
-            <a class="main_card-href">Some tag? </a>
+            <a class="main_card-href" (click)="saveImage(currentImg)">Bookmark it! </a>
+            <a class="main_card-href">Some tag? {{currentImg}}</a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </section>

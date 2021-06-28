@@ -1,6 +1,6 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {Observable} from "rxjs";
-import {FlickrImg} from "../../models/flickrImg";
+import {Image} from "../../models/image";
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { map } from 'rxjs/internal/operators/map';
@@ -8,6 +8,8 @@ import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChang
 import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import {IImageService} from "../../services/i-image-service";
 import {IMAGE_SERVICE_TOKEN} from "../../tokens/injection-tokens";
+import {Response} from "../../models/response";
+import {ImageSaverService} from "../../services/image-saver.service";
 
 @Component({
   selector: 'app-search-image',
@@ -17,10 +19,13 @@ import {IMAGE_SERVICE_TOKEN} from "../../tokens/injection-tokens";
 export class SearchImageComponent implements OnInit {
 
   @ViewChild('imgSearchInput', { static: true }) imgSearchInput: ElementRef;
-  image$: Observable<FlickrImg[]>;
+  image$: Observable<any>;
   keyword: string;
   pageNumber: number;
-  constructor(@Inject(IMAGE_SERVICE_TOKEN) private iImageService: IImageService) {}
+  photoArray: any[];
+  constructor(
+    @Inject(IMAGE_SERVICE_TOKEN) private iImageService: IImageService,
+    private imageSaverService: ImageSaverService) {}
 
   ngOnInit(): void {
     this.pageNumber = 1;
@@ -53,6 +58,14 @@ export class SearchImageComponent implements OnInit {
     this.image$ = this.iImageService.searchPublicPhotos(this.keyword, ++this.pageNumber).pipe(
       shareReplay(1)
     );
+  }
+
+  getNumberOfPagination(total: number, perpage: number): number {
+    return Math.ceil(total / perpage);
+  }
+
+  saveImage(currentImg: Image) {
+    this.imageSaverService.addImageInGallery(currentImg).subscribe();
   }
 }
 
