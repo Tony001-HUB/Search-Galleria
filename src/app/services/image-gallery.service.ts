@@ -5,7 +5,6 @@ import {Observable} from "rxjs";
 import { map } from 'rxjs/internal/operators/map';
 import {Image} from "../models/image";
 import {FirebaseImageContainer} from "../models/ FirebaseImageContainer";
-import {IImageService} from "./i-image-service";
 import {IImageGalleryService} from "./i-image-gallery-service";
 
 @Injectable({

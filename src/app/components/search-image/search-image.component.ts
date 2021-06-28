@@ -22,7 +22,6 @@ export class SearchImageComponent implements OnInit {
   image$: Observable<any>;
   keyword: string;
   pageNumber: number;
-  photoArray: any[];
   constructor(
     @Inject(IMAGE_SERVICE_TOKEN) private iImageService: IImageService,
     private imageSaverService: ImageGalleryService) {}
