@@ -16,7 +16,7 @@
         <button routerLink="/cloud" [routerLinkActive]="['active']"><img src="./assets/icons8-cloud-50.png"></button>
       </div>
       <div class="main_navbar-book">
-        <button *ngIf="authService.isAuthenticated(); else login"  routerLink="/bookmark"><img src="./assets/icons8-book-stack-60.png"></button>
+        <button *ngIf="iAuthService.isAuthenticated(); else login"  routerLink="/bookmark"><img src="./assets/icons8-book-stack-60.png"></button>
       </div>
     </div>
     <div class="main_search-panel">
