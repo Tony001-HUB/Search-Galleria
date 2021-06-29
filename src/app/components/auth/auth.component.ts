@@ -39,9 +39,9 @@ export class AuthComponent implements OnInit {
       returnSecureToken: true
     };
     this.iAuthService.login$(user).subscribe( res => {
-        this.form.reset();
-        this.router.navigate(['/bookmark']);
-        this.submitted = false;
+      this.form.reset();
+      this.router.navigate(['/bookmark']);
+      this.submitted = false;
       },
       () => { this.submitted = false; alert('Введен неправильный email или password'); }
     );

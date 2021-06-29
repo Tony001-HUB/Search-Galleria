@@ -4,23 +4,33 @@ import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import {User} from "../models/user";
 import {Observable} from "rxjs";
+import {IAuthService} from "./i-auth-service";
+import {AuthenticationInfo} from "../models/authenticationInfo";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements IAuthService{
 
   constructor(private http: HttpClient) {}
 
-  login$(user: User): Observable<void> {
+  login$(user: User): Observable<AuthenticationInfo> {
     return this.http
-      .post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKeyFireBaseAuth}`, user)
+      .post<AuthenticationInfo>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKeyFireBaseAuth}`, user)
       .pipe(
         tap(this.setToken)
       );
   }
 
-  private setToken(response): void {
+  logout(): void {
+    this.setToken(null);
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getToken;
+  }
+
+  private setToken(response: AuthenticationInfo): void {
     if (response) {
       const expData = new Date( new Date().getTime() + +response.expiresIn * 1000);
       localStorage.setItem('fb-token-exp', expData.toString());
@@ -30,7 +40,7 @@ export class AuthService {
     }
   }
 
-  get token(): any {
+  private getToken(): string {
     const expDate = new Date(localStorage.getItem('fb-token-exp'));
     if ( new Date() > expDate ) {
       this.logout();
@@ -38,13 +48,4 @@ export class AuthService {
     }
     return localStorage.getItem('fb-token');
   }
-
-  logout(): void {
-    this.setToken(null);
-  }
-
-  isAuthenticated(): any {
-    return !!this.token;
-  }
-
 }

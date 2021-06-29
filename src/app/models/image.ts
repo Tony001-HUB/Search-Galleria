@@ -1,6 +1,5 @@
 /**
  * Represents an object,showing images properties
- * This object returns flickr when you request the image.
  */
 export interface Image {
   page: string,
