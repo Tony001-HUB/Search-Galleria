@@ -1,15 +1,10 @@
 import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
-import {Observable} from "rxjs";
+import {fromEvent, Observable} from "rxjs";
 import {Image} from "../../models/image";
-import { fromEvent } from 'rxjs/internal/observable/fromEvent';
-import { debounceTime } from 'rxjs/internal/operators/debounceTime';
-import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
-import { shareReplay } from 'rxjs/internal/operators/shareReplay';
 import {IImageService} from "../../services/i-image-service";
 import {IAUTH_SERVICE_TOKEN, IMAGE_SERVICE_TOKEN} from "../../tokens/injection-tokens";
 import {ImageGalleryService} from "../../services/image-gallery.service";
-import { map } from 'rxjs/operators';
-import {AuthService} from "../../services/auth.service";
+import {debounceTime, distinctUntilChanged, map, shareReplay } from 'rxjs/operators';
 import {IAuthService} from "../../services/i-auth-service";
 
 @Component({

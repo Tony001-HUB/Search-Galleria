@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "news-portal-3b3d9"
+    "default": "elilink-6820a",
+    "test-task": "elilink-6820a"
   }
 }

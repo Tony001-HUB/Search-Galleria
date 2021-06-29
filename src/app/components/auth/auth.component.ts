@@ -40,7 +40,7 @@ export class AuthComponent implements OnInit {
     };
     this.iAuthService.login$(user).subscribe( res => {
       this.form.reset();
-      this.router.navigate(['/bookmark']);
+      this.router.navigate(['/cloud']);
       this.submitted = false;
       },
       () => { this.submitted = false; alert('Введен неправильный email или password'); }
