@@ -7,14 +7,10 @@ export const environment = {
   production: false,
   apiKey: 'b7f8807915c4584cfa2fef940ecc7533',
   getImgUrl: `${rootPath}`,
-  oauth_token: `72157719519880315-73fd28a50e08d33b`,
-  oauth_token_secret: `86ed352415740045`,
   oauth_verifier: `47fecc7b7274c597`,
   fbDbUrl: 'https://news-portal-3b3d9-default-rtdb.firebaseio.com/',
-  new_auth_token: `72157719477522847-4b1a6ae54592a13b`,
-  new_oauth_token_secret: `37c595e5c876f011`,
-  user_nsid: `193313632%40N03`,
-  username: `rootygerwer`
+  auth_token: `72157719477522847-4b1a6ae54592a13b`,
+  oauth_token_secret: `37c595e5c876f011`,
 };
 
 /*

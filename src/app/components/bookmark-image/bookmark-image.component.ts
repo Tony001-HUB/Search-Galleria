@@ -21,6 +21,8 @@ export class BookmarkImageComponent implements OnInit {
   }
 
   remove(id: string) {
-    this.iImageGalleryService.removeImageFromGallery$(id).subscribe();
+    this.iImageGalleryService.removeImageFromGallery$(id).subscribe(response => {
+      location.reload();
+    });
   }
 }

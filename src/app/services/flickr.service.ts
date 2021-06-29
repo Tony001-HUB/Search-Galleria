@@ -14,7 +14,7 @@ export class FlickrService implements IImageService{
 
   constructor(private http: HttpClient) { }
 
-  public searchPublicPhotos(searchTerm: string, pageNumber: number): Observable<ImageResponse> {
+  public searchPublicPhotos$(searchTerm: string, pageNumber: number): Observable<ImageResponse> {
     return this.http
       .get<ImageResponse>(`${environment.getImgUrl}`, {
         params: {

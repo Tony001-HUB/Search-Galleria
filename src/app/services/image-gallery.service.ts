@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import {Observable} from "rxjs";
 import { map } from 'rxjs/internal/operators/map';
 import {Image} from "../models/image";
-import {FirebaseImageContainer} from "../models/ FirebaseImageContainer";
+import {FirebaseImageContainer} from "../models/firebaseImageContainer";
 import {IImageGalleryService} from "./i-image-gallery-service";
 
 @Injectable({

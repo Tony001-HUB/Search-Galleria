@@ -23,9 +23,10 @@
       <div class="main_input-wrapper">
         <input class="main_input" #imgSearchInput placeholder="Find image">
       </div>
+      <div class="main_message-text" *ngIf="!image$">No images here. Would you try to search for anything else ?</div>
       <div *ngIf="image$ | async as response" >
       <div class="main_paginator-wrapper">
-        <button class="main_paginator-next" (click)="btnNextPage()">Forward ></button>
+        <button [disabled]="pageNumber >= getNumberOfPagination(response.photos.total, response.photos.perpage)" class="main_paginator-next" (click)="btnNextPage()">Forward ></button>
         <span class="main_paginator-total">
           Page {{pageNumber}} of {{getNumberOfPagination(response.photos.total, response.photos.perpage)}}
         </span>

@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
+    "@angular/service-worker": "~12.1.0",
+    "ng2-opd-popup": "^1.1.21",
     "ngx-infinite-scroll": "^10.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
