@@ -4,7 +4,7 @@
       <p class="header-text">Image Finder</p>
     </div>
     <div class="header-img-wrapper">
-      <img class="header-img" src="./assets/icons8-male-user-96.png">
+      <a routerLink="/auth"><img class="header-img" src="./assets/icons8-male-user-96.png"></a>
     </div>
   </div>
 </header>
@@ -16,7 +16,7 @@
         <button routerLink="/cloud" [routerLinkActive]="['active']"><img src="./assets/icons8-cloud-50.png"></button>
       </div>
       <div class="main_navbar-book">
-        <button routerLink="/bookmark"><img src="./assets/icons8-book-stack-60.png"></button>
+        <button *ngIf="authService.isAuthenticated(); else login"  routerLink="/bookmark"><img src="./assets/icons8-book-stack-60.png"></button>
       </div>
     </div>
     <div class="main_search-panel">
@@ -49,3 +49,9 @@
 <footer class="footer">
   <h2>Copyrights</h2>
 </footer>
+
+<ng-template #login>
+    <div class="main_navbar-book">
+      <button [routerLink]="['/auth']"><img src="./assets/icons8-book-stack-60.png"></button>
+    </div>
+</ng-template>

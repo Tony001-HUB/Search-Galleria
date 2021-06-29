@@ -11,6 +11,7 @@ export const environment = {
   fbDbUrl: 'https://news-portal-3b3d9-default-rtdb.firebaseio.com/',
   auth_token: `72157719477522847-4b1a6ae54592a13b`,
   oauth_token_secret: `37c595e5c876f011`,
+  apiKeyFireBaseAuth: "AIzaSyCLmxLsuUid3YmplX7AE9uAqsLyh2MR8gc"
 };
 
 /*

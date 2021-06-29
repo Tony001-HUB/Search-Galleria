@@ -9,6 +9,7 @@ import {IImageService} from "../../services/i-image-service";
 import {IMAGE_SERVICE_TOKEN} from "../../tokens/injection-tokens";
 import {ImageGalleryService} from "../../services/image-gallery.service";
 import { map } from 'rxjs/operators';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-search-image',
@@ -23,7 +24,8 @@ export class SearchImageComponent implements OnInit {
   pageNumber: number;
   constructor(
     @Inject(IMAGE_SERVICE_TOKEN) private iImageService: IImageService,
-    private imageSaverService: ImageGalleryService) {}
+    private imageSaverService: ImageGalleryService,
+    public authService: AuthService) {}
 
   ngOnInit(): void {
     this.pageNumber = 1;

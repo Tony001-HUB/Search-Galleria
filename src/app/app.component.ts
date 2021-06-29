@@ -6,5 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Elinext';
+
 }
+/*
+  userActivity;
+
+  userInactive: Subject<any> = new Subject();
+  constructor() {
+    this.setTimeout();
+    this.userInactive.subscribe(() => console.log('user has been inactive for 3s'));
+  }
+
+  setTimeout() {
+    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 3000);
+  }
+
+  @HostListener('window:mousemove') refreshUserState() {
+    clearTimeout(this.userActivity);
+    this.setTimeout();
+  }
+ */
