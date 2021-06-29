@@ -36,7 +36,7 @@
         <div class="main_card-wrapper">
           <div *ngFor="let currentImg of response.photos.photo" class="main_card">
             <img class="main_card-img" src="{{currentImg.url_m}}">
-            <a class="main_card-href" (click)="saveImage(currentImg)">Bookmark it! </a>
+            <a class="main_card-href" *ngIf="iAuthService.isAuthenticated(); else auth" (click)="saveImage(currentImg)">Bookmark it! </a>
             <p class="main_card-text ">Tags: {{currentImg.tags}}</p>
           </div>
         </div>
@@ -54,4 +54,8 @@
     <div class="main_navbar-book">
       <button [routerLink]="['/auth']"><img src="./assets/icons8-book-stack-60.png"></button>
     </div>
+</ng-template>
+
+<ng-template #auth>
+   <a [routerLink]="['/auth']" style="text-align: center" class="main_card-href">Bookmark it! </a>
 </ng-template>

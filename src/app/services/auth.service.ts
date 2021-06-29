@@ -27,7 +27,7 @@ export class AuthService implements IAuthService{
   }
 
   isAuthenticated(): boolean {
-    return !!this.Token;
+    return !!this.token;
   }
 
   private setToken(response: AuthenticationInfo): void {
@@ -40,7 +40,7 @@ export class AuthService implements IAuthService{
     }
   }
 
-  get Token(): string {
+  get token(): string {
     const expDate = new Date(localStorage.getItem('fb-token-exp'));
     if ( new Date() > expDate ) {
       this.logout();

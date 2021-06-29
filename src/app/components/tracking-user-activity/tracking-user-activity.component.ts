@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import {IAUTH_SERVICE_TOKEN} from "../../tokens/injection-tokens";
 import {IAuthService} from "../../services/i-auth-service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-tracking-user-activity',
@@ -17,11 +18,10 @@ export class TrackingUserActivityComponent implements OnInit {
   userActivity;
 
   userInactive: Subject<any> = new Subject();
-  constructor(@Inject(IAUTH_SERVICE_TOKEN) private iAuthService: IAuthService, private router: Router,) {
-    console.log(iAuthService.isAuthenticated());
-    if(iAuthService.isAuthenticated()){
+  constructor(private authService: AuthService, private router: Router,) {
+    if(authService.isAuthenticated()){
       this.setTimeout();
-      this.userInactive.subscribe(() => {iAuthService.logout(); this.router.navigate(['/auth']);});
+      this.userInactive.subscribe(() => {authService.logout(); this.router.navigate(['/auth']);});
     }
   }
 
